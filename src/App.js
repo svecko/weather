@@ -6,6 +6,23 @@ const api = {
   baseURL: 'https://api.openweathermap.org/data/2.5/',
 };
 
+const weatherEmoji = {
+  Thunderstorm: '⛈️',
+  Drizzle: '🌧️',
+  Rain: '🌧️',
+  Mist: '🌫️',
+  Smoke: '🌫️',
+  Haze: '🌫️',
+  Dust: '🌫️',
+  Fog: '🌫️',
+  Sand: '🌫️',
+  Ash: '🌫️',
+  Squall: '🌫️',
+  Tornado: '🌪️',
+  Clear: '☀️',
+  Clouds: '☁️',
+};
+
 function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
@@ -39,17 +56,26 @@ function App() {
         {typeof weather.main != 'undefined' ? (
           <div>
             <div className="container">
+              <div className="weather-indicator">
+                {weatherEmoji[weather.weather[0].main]}
+              </div>
               <div className="weather">{weather.weather[0].description}</div>
               <div className="location">
-                {weather.name}, {weather.sys.country}
+                <span className="emoji">📍</span> {weather.name},{' '}
+                {weather.sys.country}
               </div>
               <div className="temperature">
-                {Math.round(weather.main.temp)}°C
+                <span className="emoji"></span> {Math.round(weather.main.temp)}
+                °C
               </div>
             </div>
           </div>
         ) : (
-          ''
+          <div className="hero">
+            <span className="icon">🛰️</span>
+            <span className="earth">🌎</span>
+            <span className="text">Poišči mesto ali državo...</span>
+          </div>
         )}
       </main>
     </div>
