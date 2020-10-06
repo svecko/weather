@@ -61,8 +61,10 @@ function App() {
               </div>
               <div className="weather">{weather.weather[0].description}</div>
               <div className="location">
-                <span className="emoji">📍</span> {weather.name},{' '}
-                {weather.sys.country}
+                <span className="emoji" role="img" aria-label="pin">
+                  📍
+                </span>{' '}
+                {weather.name}, {weather.sys.country}
               </div>
               <div className="temperature">
                 <span className="emoji"></span> {Math.round(weather.main.temp)}
@@ -72,8 +74,12 @@ function App() {
           </div>
         ) : (
           <div className="hero">
-            <span className="icon">🛰️</span>
-            <span className="earth">🌎</span>
+            <span className="icon" role="img" aria-label="satellite">
+              🛰️
+            </span>
+            <span className="earth" role="img" aria-label="earth">
+              🌎
+            </span>
             <span className="text">Poišči mesto ali državo...</span>
           </div>
         )}
