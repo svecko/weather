@@ -23,48 +23,14 @@ function App() {
     }
   };
 
-  const dateBuilder = (d) => {
-    const months = [
-      'Januar',
-      'Februar',
-      'Marec',
-      'April',
-      'Maj',
-      'Junij',
-      'Julij',
-      'Avgust',
-      'September',
-      'Oktober',
-      'November',
-      'December',
-    ];
-
-    const days = [
-      'Nedelja',
-      'Ponedeljek',
-      'Torek',
-      'Sreda',
-      'Četrtek',
-      'Petek',
-      'Sobota',
-    ];
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
-
-    return `${day}, ${date}. ${month.toLocaleLowerCase()} ${year}`;
-  };
-
   return (
     <div className="App">
       <main>
-        <div className="search-box">
+        <div className="search">
           <input
             type="text"
             className="search-bar"
-            placeholder="Išči..."
+            placeholder="🔍 Išči..."
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
@@ -73,17 +39,12 @@ function App() {
         {typeof weather.main != 'undefined' ? (
           <div>
             <div className="container">
-              <div className="location-box">
-                <div className="location">
-                  {weather.name}, {weather.sys.country}
-                </div>
-                <div className="date">{dateBuilder(new Date())}</div>
+              <div className="weather">{weather.weather[0].description}</div>
+              <div className="location">
+                {weather.name}, {weather.sys.country}
               </div>
-              <div className="weather-box">
-                <div className="temperature">
-                  {Math.round(weather.main.temp)}°C
-                </div>
-                <div className="weather">{weather.weather[0].description}</div>
+              <div className="temperature">
+                {Math.round(weather.main.temp)}°C
               </div>
             </div>
           </div>
